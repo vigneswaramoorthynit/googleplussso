@@ -1,0 +1,9 @@
+#Ant properties
+#Fri Jan 11 08:04:18 CET 2019
+builddate=20190111 0759
+description=googleplusssofacades
+name=googleplusssofacades
+releasedate=20160923 1341
+vendor=hybris
+version=6.2.0.29
+version.api=6.2.0

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<bean id="googleDataConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.app.googleplusssofacades.data.SocialCustomerData" />
+		<property name="populators">
+			<list>
+				<ref bean="googleRegistrationFormPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="googleRegistrationFormPopulator"
+		class="com.app.googleplusssofacades.populator.GoogleRegistrationFormPopulator">
+	</bean>
+	
+	<alias name="defaultGoogleRegistrationFacade" alias="googleRegistrationFacade" />
+	<bean id="defaultGoogleRegistrationFacade"
+		class="com.app.googleplusssofacades.impl.DefaultGoogleRegistrationFacade"></bean>
+
+	<alias name="defaultGoogleRegistrationService" alias="googleRegistrationService" />
+	<bean id="defaultGoogleRegistrationService"
+		class="com.app.googleplusssofacades.service.impl.DefaultGoogleRegistrationService"></bean>
+		
+			<alias name="defaultGoogleLoginFacade" alias="googleLoginFacade" />
+	<bean id="defaultGoogleLoginFacade"
+		class="com.app.googleplusssofacades.impl.DefaultGoogleLoginFacade"></bean>
+
+	<alias name="defaultGoogleLoginService" alias="googleLoginService" />
+	<bean id="defaultGoogleLoginService"
+		class="com.app.googleplusssofacades.service.impl.DefaultGoogleLoginService"></bean>
+		
+	<bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<constructor-arg name="clientId"
+			value="#{configurationService.configuration.getProperty('spring.social.google.clientId')}" />
+		<constructor-arg name="clientSecret"
+			value="#{configurationService.configuration.getProperty('spring.social.google.clientSecret')}" />
+	</bean>
+    <bean id="googleplusssofacadesSystemSetup" class="com.app.googleplusssofacades.setup.GoogleplusssofacadesSystemSetup">
+        <!-- constructor arg injection example -->
+        <constructor-arg ref="googleplusssofacadesService"/>
+    </bean>
+
+    <bean id="googleplusssofacadesService" class="com.app.googleplusssofacades.service.impl.DefaultGoogleplusssofacadesService">
+        <!-- setter injection example -->
+        <property name="modelService" ref="modelService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+    	<alias name="defaultGooglePlusNetworkDao" alias="googlePlusNetworkDao" />
+	<bean id="defaultGooglePlusNetworkDao"
+		class="com.app.googleplusssofacades.dao.impl.DefaultGooglePlusNetworkDao"></bean>
+    		
+	<bean id="googlePlusNetworkUtil"
+		class="com.app.googleplusssofacades.util.GooglePlusNetworkUtil"></bean>
+			
+</beans>

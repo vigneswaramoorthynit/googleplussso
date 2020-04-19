@@ -1,0 +1,15 @@
+
+# you can put key/value pairs here.
+# Use Config.getParameter(..) to retrieve the values during runtime.
+
+googleplusssoaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+googleplusssoaddon.application-context=googleplusssoaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.googleplusssoaddon=classpath:/googleplusssoaddon/web/spring/googleplusssoaddon-web-spring.xml
+
+
+
+googleplusssoaddon.javascript.paths.responsive=/responsive/common/js/googleplusssoaddon.js
+googleplusssoaddon.css.paths.responsive=/responsive/common/css/googleplusssoaddon.css
